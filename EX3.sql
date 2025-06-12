@@ -25,4 +25,23 @@ WHERE cost > ANY (
 );
 
 -- Hien thi cac cong trinh chua co kien truc su thiet ke
+SELECT * FROM design
+WHERE architect_id IS NOT NULL;
+
+-- Hien thi thong tin cac kien truc su cung nam sinh 
+SELECT * FROM architect
+WHERE birthday IN (
+	SELECT birthday FROM architect
+    GROUP BY birthday
+    HAVING count(*) > 1
+);
+
+-- Hien thi thong tin cac kien truc su cung noi tot nghiep 
+SELECT * FROM architect
+WHERE place IN (
+	SELECT place FROM architect
+    GROUP BY place
+    HAVING count(*) > 1
+);
+
 
